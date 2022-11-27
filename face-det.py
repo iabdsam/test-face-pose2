@@ -104,16 +104,12 @@ def get_angles_eular(rvec, tvec):
 
 def get_angles_gerneal(image_points, rvec, tvec, CAMERA_MATRIX, img):
     dist_coeffs = np.zeros((4,1)) # Assuming no lens distortion
-    
-    print(rvec, tvec)
-    
+
     (nose_end_point2D, jacobian) = cv2.projectPoints(np.array([(0.0, 0.0, 1000.0)]), rvec, tvec, CAMERA_MATRIX, dist_coeffs, cv2.SOLVEPNP_AP3P)
 
     p1 = ( int(image_points[0][0]), int(image_points[0][1]))
 
     p2 = ( int(nose_end_point2D[0][0][0]), int(nose_end_point2D[0][0][1]))
-    
-    print(p1, p2)
 
     cv2.line(img, p1, p2, (0, 255, 0), 2)
 
@@ -197,16 +193,13 @@ for i in range(1,4):
         continue
 
     for face in faces:
-        
-        print(dir(face))
+
         (x_, y_, w, h) = rect_to_bb(face)
         # draw the face detected
         face_detect = cv2.rectangle(
             imgtest, (x_, y_), (x_+w, y_+h), (255, 0, 255), 2)
         plt.imshow(face_detect)
         plt.show()
-        
-        print(type(face))
         
         
         marks = FACE_PREDICTOR(imgtest, face.rect)    # Use dlib
@@ -249,8 +242,9 @@ for i in range(1,4):
         
         (horizon_angle, vertical_angle) = get_angles_gerneal(image_points, rotation_vector, translation_vector, CAMERA_MATRIX, imgtest) 
         
+	print("----------------")
         print(horizon_angle, vertical_angle)
-        
+        print("----------------")
         
         
         
