@@ -145,7 +145,7 @@ FACE_DETECTOR = dlib.cnn_face_detection_model_v1("mmod_human_face_detector.dat")
 
 # FACE_DETECTOR = dlib.get_frontal_face_detector()
 
-FACE_PREDICTOR = dlib.shape_predictor('model/shape_predictor_68_face_landmarks.dat')
+FACE_PREDICTOR = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 FACE_3D_MODEL_POINT = np.array([
                             (0.0, 0.0, 0.0),             # Nose tip
